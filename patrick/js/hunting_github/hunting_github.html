@@ -1,0 +1,36 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<style>
+
+</style>
+  <body>
+    <button id="someButton" class=""><h1>Press it. Press it for Glory!</h1></button>
+    <script>
+      $(document).ready(function() {
+        $(document).on('click', 'button', function() {
+          $.get('https://api.github.com/users/falterfriday', function(res) {
+            $('p').append(res.name);
+          })
+        })
+      })
+    </script>
+    <p>
+
+    </p>
+    <!-- this is the code they were looking for -->
+    <!-- <script>
+      $(document).ready(
+        function(){
+          $('button').click(function(){
+            $.get('https://api.github.com/users/falterfriday', displayName);
+          });
+        function displayName(data){
+            if (data.name){
+              $('body').append("<p>"+data.name+"</p>");
+            }
+          }
+        }
+      );
+    </script> -->
+  </body>
+</html>
