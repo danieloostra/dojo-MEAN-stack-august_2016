@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Survey form</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function (){
+            var socket = io.connect();
+            $('form').submit(
+                function(){
+                    socket.emit("posting_form", {
+                        name: $('#name').val(),
+                        dojo: $('#dojo').val(),
+                        comment: $('#comment').val(),
+                        lang: $('#lang').val()
+
+                        });
+                    $('#name').val('');
+                    $('#comment').val('');
+                    $('#lang').val('') ;
+
+                    console.log('Got Here')
+                return false;
+                console.log('Got Here but shouldn')
+            });
+            socket.on('updated_message', function (data){
+                $('#results').html('<p>You emitted the following information to the server: { name: "' + data.name + '", location: "' + data.dojo + '", language: "' + data.lang + '", comment: "' + data.comment + '"</p>')
+            });
+            socket.on('random_number', function(data){
+                $('#results').append('<p>Your lucky number emitted by the server is ' + data.number + '</p>')
+            });
+
+        })
+    </script>
+</head>
+<body>
+        <div id='results'>
+        </div>
+        <form>
+            Your Name: <input id = "name" type="text" name="name">
+            Dojo Location <select name="dojlocation" id="dojo">
+                            <option value="Mountain View"> Mountain View</option>
+                            <option value="Seattle">Seattle</option>
+                          </select>
+            Favorite Language <input type="text" name="lang" id="lang">
+            Comment<textarea name="comment" id="comment"></textarea>
+            <input type="submit" value="Submit">
+        </form>
+</body>
+</html>
