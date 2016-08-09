@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>Chatroom</title>
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+	    <script type ="text/javascript">
+	    	$(document).ready(function (){
+	            var socket = io.connect();
+
+	            var name = prompt('Your name:');
+	            if(name === null){
+	            	name = 'Guest'
+	            }
+	            socket.emit('new_user', {name: name});
+
+	            $('button').click(function(){
+	            	if($('#message').val()==''){
+	            		alert('You can not send blank messages')
+	            		
+	            	}
+	            	else{
+	            		socket.emit('sent_message', {message: $('#message').val()})
+	            	}
+	            	$('#message').val('')
+	            });
+	            socket.on('new_message', function(data){
+	            	$('#maincontent').append('<p>' + data.name + ': ' + data.message + '</p>')
+	            	var html= $('#maincontent').html()
+	            	socket.emit('html', {html : html})
+	            });
+
+	            socket.on('add_user', function(data){
+	            	console.log('firing second')
+	            	$('#maincontent').append('<p>New User: ' + data.user + ' has entered the room </p>')
+	     			var html= $('#maincontent').html()
+	            	console.log(html)
+	            	socket.emit('html', {html : html})
+	            });
+	            socket.on('initialize', function(data){
+	            	console.log('firing firs')
+	            	$('#maincontent').html(data.html)
+	            })
+   
+	        })
+	   	</script>
+	   	<style>
+	   	#maincontent{
+	   		border:1px solid black;
+	   		width: 400px;
+	   		height:300px;
+	   		overflow-y: scroll;
+	   		padding:10px;
+	   	}
+	   	p{
+	   		font-size: 12px;
+	   		margin: 5px 2px
+	   	}
+	   	input{
+	   		width:350px;
+	   		margin-top:5px;
+	   	}
+	   	</style>
+	</head>
+	<body>
+		<h1>Conversation Board</h1>
+		<div id="maincontent">
+		</div>
+		<input type="text" placeholder="enter your message here" id="message">
+		<button>Send</button>
+	</body>
+</html>
