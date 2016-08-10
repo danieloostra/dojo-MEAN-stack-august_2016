@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<title>Quoting Dojo</title>
+	</head>
+	<body>
+		<div>
+			<h1>Here are the awesome quotes</h1>
+			<% if(quotes){ %>
+			<% for (var x in quotes){%>
+			<p>"<%= quotes[x].quote %>"</p>
+			<p>- <%= quotes[x].name %> at <%= quotes[x].created_at %></p>
+			<hr>
+			<% } %>
+			<% } %>
+		</div>
+		<a href="/">Go Back</a>
+	</body>
+</html>

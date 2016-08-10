@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>Mongooses</title>
+	</head>
+	<body>
+		<div>
+		<a href="/mongooses/new">Add a new mongoose</a>
+		</div>
+		<div>
+		<% if(mongooses) { %>
+		<% for (var x in mongooses) {%>
+		<h4> Name: <%= mongooses[x].name %> </h4>
+		<h4> Age: <%= mongooses[x].age %></h4>
+		<h4> Nickname: <%= mongooses[x].nickname %></h4>
+		<h4> Zipcode: <%= mongooses[x].zipcode %></h4>
+		<hr>
+		<a href="/mongoose/<%= mongooses[x]._id %>">See Info</a>
+		&nbsp;
+		<a href="/mongoose/<%= mongooses[x]._id %>/edit">Edit</a>
+		&nbsp;
+		<a href="/mongoose/<%= mongooses[x]._id %>/destroy">Destroy</a>
+		<% } %>
+		<% } %>
+
+	</body>
+</html>

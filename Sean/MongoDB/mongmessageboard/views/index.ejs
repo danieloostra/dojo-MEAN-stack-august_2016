@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>A Web Page</title>
+	</head>
+	<body>
+		
+		<div>
+			<h1>The Dojo Message Board</h1>
+			<hr>
+			<form action="/postmessage" method="post">
+			Name: <input type="text" name="name">
+			Message: <textarea name="post"></textarea>
+			<input type="submit" value="Post message!">
+			</form>
+		</div>
+		<% if(posts){ %>
+		<% for (var x in posts){%>
+		<p>Name : <%= posts[x].name %></p>
+		<p>Message : <%= posts[x].post %></p>
+			<%if (posts[x]._comments){%>
+			<%for (var i = 0; i < posts[x]._comments.length; i++){ %>
+					<p>Name: <%= posts[x]._comments[i].name %></p>
+					<p>Comment:<%= posts[x]._comments[i].comment %></p>
+				<%}%>
+			<%}%>
+			<form action="/postcomment/<%= posts[x]._id %>" method="post">
+			Name: <input type="text" name="name">
+			Comment: <textarea name="comment"></textarea>
+			<input type="submit" value="Post comment">
+			</form>
+		<%}%>
+		<%}%>
+
+	</body>
+</html>
