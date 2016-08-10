@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+
+        .all_users{
+          width:500px;
+          height: 500px;
+          display: inline-block;
+          border: 1px solid black;
+          overflow: scroll;
+        }
+        .add{
+          width: 220px;
+          display: inline-block;
+          margin: 33px;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="all_users">
+
+        <% for(var i=0; i<info.length; i++) {%>
+          <div class="">
+            <table>
+              <tr>
+                <th>
+                  Name of Animal
+                </th>
+                <th>
+                  Size of Animal
+                </th>
+                <th>
+                  Edit or Delete
+                </th>
+                <tr>
+                  <td>
+                    <a href="/show/<%= info[i]._id %>"><%= info[i].animal %></a>
+                  </td>
+                  <td>
+                    <%= info[i].size %>
+                  </td>
+                  <td>
+                    <a href="/edit/<%= info[i]._id %>">edit</a> | <a href="/delete/<%= info[i]._id %>">delete</a>
+                  </td>
+                </tr>
+              </tr>
+            </table>
+
+               <!-- <p>animal name: <a href="/show"><%= info[i].animal %></a>  |  size of animal: <%= info[i].size %> | <a href="/edit">edit</a> | <a href="/delete">delete</a></p> -->
+
+           </div>
+        <% } %>
+      </div>
+      <form class="add" action="/animal" method="post">
+        add animal: <input type="text" name="animal">
+        size of animal: <input type="text" name="size">
+        <input type="submit" name="submit" value = "add new animal">
+      </form>
+
+    </div>
+  </body>
+</html>

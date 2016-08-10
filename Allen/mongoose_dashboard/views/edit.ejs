@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <h3><a href="/">Home</a> </h3>
+
+    <p>
+      <form class="edit" action="/edit_submit/<%= animal.id%>" method="post">
+        edit animal: <input type="text" name="animal">
+        size of animal: <input type="text" name="size">
+        <input type="submit" name="submit" value = "edit animal">
+      </form>
+    </p>
+
+  </body>
+</html>
