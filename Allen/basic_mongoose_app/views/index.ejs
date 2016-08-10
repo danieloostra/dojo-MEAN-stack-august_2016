@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+        .wrapper{
+          width:40%;
+          border: 1px solid grey:
+        }
+    </style>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="all_users">
+
+        <% for(var i=0; i<info.length; i++) {%>
+           <li><%= info[i].name %> : <%= info[i].age %></li>
+        <% } %>
+
+      </div>
+
+      <form class="send" action="/users" method="post">
+
+        <p>
+          name: <input type="text" name= "name">
+        </p>
+
+        <p>
+          age: <input type="text" name = "age">
+        </p>
+        <input type="submit" value="Submit">
+        <!-- <p>
+          <button type="submit" value="submit" id = "button"> submit </button>
+        </p> -->
+
+      </form>
+    </div>
+  </body>
+</html>
