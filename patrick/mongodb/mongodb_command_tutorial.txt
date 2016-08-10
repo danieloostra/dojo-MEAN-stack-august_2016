@@ -1,0 +1,28 @@
+MongoDB Commands
+
+1. use my_first_db - [creates 'my_first_db' db]
+2. db.createCollection('students') - [creates 'student' collection]
+3. db.students.insert({name: "Bob", home_state: "Texas", lucky_number: 32, birthday: {month: 8, day: 9, year: 1985}})
+4. db.students.insert({name: "Marco", home_state: "California", lucky_number: 54, birthday: {month: 8, day: 9, year: 1985}})
+5. db.students.insert({name: "Tony", home_state: "New Jersey", lucky_number: 837, birthday: {month: 12, day: 24, year: 1978}})
+6. db.students.insert({name: "La-a", home_state: "New York", lucky_number: 23, birthday: {month: 4, day: 20, year: 1993}})
+7. db.students.insert({name: "Patrick", home_state: "Indiana", lucky_number: 7, birthday: {month: 3, day: 10, year: 1983}})
+8. db.students.find() && db.students.find().pretty()
+9. db.students.find({home_state: "California"})
+10. db.students.find({lucky_number: {$gt: 3}}).pretty()
+11. db.students.find({lucky_number: {$lte: 10}}).pretty()
+12. db.students.find({$and: [{lucky_number:{$gt: 1}},{ lucky_number: {$lte: 9}}]}).pretty()
+13. db.students.update( {} , {$set: {interests: ["coding","brunch","MongoDB"]}}, {multi: true})
+14. db.students.update( {name:"Patrick"} , {$push: {interests: "Guitar" }}, {multi: true})
+15. db.students.update( {name:"La-a"} , {$push: {interests: "Reading" }}, {multi: true})
+16. db.students.update( {name:"Bob"} , {$push: {interests: "Steak" }}, {multi: true})
+17. db.students.update( {name:"Marco"} , {$push: {interests: "Taxes" }}, {multi: true})
+18. db.students.update( {name:"Marco"} , {$pop: {interests: 1 }}, {multi: true})
+19. db.students.findAndModify( {query: { home_state: "California"}, remove: true } )
+20. db.students.findAndModify( {query: { name: "Bob"}, remove: true } )
+21. db.students.findAndModify( {query: { lucky_number: {$gt: 5} }, remove: true } )
+22. db.students.update( {} , {$set: {number_of_belts: 0 }}, {multi: true})
+23. db.students.update( {home_state: "New Jersey"}, {$inc:  {number_of_belts: 1} } )
+24. db.students.update({}, {$rename: { 'number_of_belts': 'belts_earned'} }, {multi:true} )
+25. db.students.update({}, {$unset: {lucky_number: "" }}, {multi:true})
+26. db.students.update({}, {$set: {updated_on: new Date("<YYYY-mm-dd>") }}, {multi:true})
