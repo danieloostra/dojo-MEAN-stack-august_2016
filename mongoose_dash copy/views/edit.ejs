@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>EDIT</title>
+    </head>
+    <body>
+        <h2>This Monster is: <%=info.name%></h2>
+
+        EDIT THIS MONSTER.
+        <form action ="/monsters/<%=info._id%>/edit" method="post">
+            <input type="text" name = 'name' placeholder="Name of Monster">
+            <input type="text" name = 'type' placeholder="Monster Type">
+            <input type="text" name = 'size' placeholder="How big is your monster?">
+            <input type="text" name = 'mood' placeholder="How is your monster feeling today?">
+            <input type="submit" value = "Update!" >
+        </form>
+
+        <br /><br />
+        <a href="/">Back.</a>
+    </body>
+</html>
