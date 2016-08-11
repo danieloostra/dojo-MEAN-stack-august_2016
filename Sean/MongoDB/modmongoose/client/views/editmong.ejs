@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title>New Mongoose</title>
+	</head>
+	<body>
+		<div>
+		<h1>Add a Mongoose</h1>
+		<form action='/mongoose/<%= mongoose._id %>' method='post'>
+			Mongoose Name: <input type="text" name="name" value="<%= mongoose.name %>">
+			Mongoose Age: <input type="text" name="age" value="<%= mongoose.age %>">
+			Mongoose Nickname: <input type="text" name="nickname" value="<%= mongoose.nickname%>">
+			Mongoose Zipcode: <input type="text" name="zipcode" value="<%= mongoose.zipcode%>">
+			<input type="submit" value="Submit">
+		</form>
+		</div>
+	</body>
+</html>

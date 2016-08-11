@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Color Filter</title>
+	  <script src='bower_components/angular/angular.js'></script>
+	  <script src="crayola.json"></script>
+	  <script type='text/javascript'>
+	  //colors is the imported array of objects from crayola.json
+
+	    var myApp = angular.module('myApp', []);
+	    myApp.controller('colorController', ['$scope', function ($scope){
+	    	$scope.colorrange = colors
+
+	    }])
+	  </script>
+</head>
+<body>
+	<div ng-controller="colorController">
+	Pick your color by name <input type="text" ng-model="colorpicker">
+	<table>
+		<thead>
+			<tr>
+				<th>Color Name</th>
+				<th>HEX</th>
+				<th>Color</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat ="color in colorrange | filter:colorpicker">
+				<td>{{color.name}}</td>
+				<td>{{color.hex}}</td>
+				<td style="background-color:{{color.hex}};height:20px;"></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</body>
+</html>

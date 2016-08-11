@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+	<title>Users</title>
+	<script type="text/javascript" src='bower_components/angular/angular.js'></script>
+	<script type="text/javascript">
+		var app = angular.module('app', [])
+		app.controller('userController', function($scope){
+			$scope.users = [
+			{first_name: 'Sean', last_name: 'Kendrick', favlang: 'Python'},
+			{first_name: 'Karen', last_name: 'Chin', favlang: 'Java'},
+			{first_name: 'Jacob', last_name: 'Cresent', favlang: 'C++'}
+			]
+
+			$scope.addUser = function(){
+				$scope.users.push($scope.newUser);
+				$scope.newUser = {}
+			}
+			$scope.removeUser = function(index){
+				$scope.users.splice(index,1)
+			}
+
+		})
+	</script>
+</head>
+<body>
+	<div ng-controller="userController">
+	<fieldset>
+		<legend>Users Controller</legend>
+		<form ng-submit='addUser()'>
+			First Name: <input type="text" ng-model="newUser.first_name">
+			Last Name: <input type="text" ng-model="newUser.last_name">
+			Favorite Language: <input type="text" ng-model="newUser.favlang">
+			<input type="submit" name="Create User">
+		</form>
+		<hr>
+		Search Your Users<input type="text" ng-model="fsers">
+		<table>
+		<thead>
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Fav Language</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat ="user in users | filter:fsers  track by $index  ">
+				<td>{{user.first_name}}</td>
+				<td>{{user.last_name}}</td>
+				<td>{{user.favlang}}</td>
+				<td><button ng-click="removeUser($index)">Remove</button></td>
+			</tr>
+		</tbody>
+	</table>
+
+	</fieldset>
+	</div>
+</body>
+</html>

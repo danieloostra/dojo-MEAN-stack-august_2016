@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ADD</title>
+        <style>
+        form{
+            margin: 0 auto;
+            padding: 20px;
+        }
+        </style>
+    </head>
+    <body>
+        <h3>Add a Monster</h3>
+        <form action = "/monsters/new" method= "post">
+            <input type="text" name = 'name' placeholder="Name of Monster">
+            <input type="text" name = 'type' placeholder="Monster Type">
+            <input type="text" name = 'size' placeholder="How big is your monster?">
+            <input type="text" name = 'mood' placeholder="How is your monster feeling today?">
+            <input type="submit" value = "Add this Monster!" />
+        </form>
+        <br ><hr ><br >
+        <a href="/">Back.</a>
+    </body>
+</html>

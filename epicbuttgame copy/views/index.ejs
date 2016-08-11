@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Butts</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type ="text/javascript">
+            $(document).ready(function (){
+
+                var socket = io.connect();
+                socket.emit('initialize')
+                console.log(socket)
+
+                $('#epic').click(function(){
+                    socket.emit('epic_click')
+                });
+                $('#reset').click(function(){
+                    socket.emit('reset_click')
+                });
+                socket.on('count', function(data){
+                    $('#update_count').html( data.count )
+                });
+            })
+
+        </script>
+        <style>
+            *{
+                text-align: center;
+            }
+            #epic{
+                background-color: darkblue;
+                color: white;
+                width: 30%;
+                height: 100px;
+                border-radius: 20px;
+                font-size: 24px;
+                border: 0px;
+            }
+            #reset{
+                background-color: red;
+                color: white;
+                width: 30%;
+                height: 60px;
+                border: 0px;
+                font-size: 16px;
+                border-radius: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2> This button has been pushed <span id = "update_count"></span> times(s)</h2>
+        <p> push this button to update the count. </p>
+        <button id ="epic"> Push the EPIC button. </button><br><br>
+        <button id = "reset"> Reset count </button>
+
+    </body>
+</html>

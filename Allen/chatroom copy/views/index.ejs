@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="./views/static/sytle.css" media="screen"> -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <title></title>
+    <style media="screen">
+
+    #outer {
+      border: 4px solid black;
+      height:500px;
+      width: 500px;
+      margin-left:23%;
+      padding:20px;
+      vertical-align: 50%;
+    }
+    #message_board {
+      width: 430px;
+      height:430px;
+      border: 1px solid black;
+    }
+
+    #active {
+      width:200px;
+      height:200px;
+      border: 1px solid silver;
+    }
+    </style>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var socket = io.connect();
+
+        var name;
+        function makePrompt(){
+          name = prompt('Type in your name to chat with other peeps:')
+          console.log(8+8);
+        };
+        makePrompt();
+
+        socket.emit('person', {name: name});
+
+        socket.on('person_chatting', function(data){
+          console.log(data.response);
+          $('#active').append("<p>" + data.response + "</p>");
+        });
+
+        $('#message').submit(function(){
+          socket.emit('message', {message: $('#input').val(), name : name});
+          return false;
+        });
+
+        socket.on('show_message', function(data){
+          $('#show_userandmessage').append("<p>"+ data.name +":"+" " +data.response+"</p>");
+        });
+
+      });
+
+    </script>
+
+  </head>
+  <body>
+
+    <h1>Conversation Board</h1>
+    <div id = "outer" align = 'center'>
+
+      <div id="message_board">
+          <div id= "show_userandmessage"></div>
+        <br>
+      </div>
+
+      <form id="message">
+            <p>
+              <input type="text" name="name" id = "input" size = " 70"> <button type="submit" id = "submit" > Send </button>
+            </p>
+            <!-- <button type="submit" id = "submit" > Send </button> -->
+      </form>
+    </div>
+
+    <div id = "active">  </div>
+
+  </body>
+</html>

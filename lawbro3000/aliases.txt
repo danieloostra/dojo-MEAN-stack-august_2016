@@ -1,0 +1,6 @@
+alias ls='ls -ltr'
+alias pylRun='python manage.py runserver'
+alias tree='find . -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"'
+alias monb='sudo mongod &, fork mongo'
+alias monup='ps -ef | grep mong'
+alias mon='mongo'
