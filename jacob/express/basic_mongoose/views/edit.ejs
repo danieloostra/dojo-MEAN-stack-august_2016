@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit</title>
+</head>
+<body>
+	<h1>Edit <%= orcas[0].name %>!</h1>
+	<form action="/orca/<%= orcas[0]._id %>" method="POST">
+		Name: <input type="text" name="name">
+		Size: <input type="text" name="size">
+		Mental Stability: <input type="text" name="mind">
+		<input type="submit" name="Submit">
+	</form>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Group Chat</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type ="text/javascript">
+
+            $(document).ready(function(){
+                var socket = io.connect();
+                var current_user;
+
+                var new_user = function(){
+                    var name = prompt('What is your name?', "enter name");
+                    socket.emit('get_user', {name: name});
+
+                };
+                new_user();
+
+                socket.on('existing', function(data){
+                    $("#error").append(data.error);
+                    new_user();
+                })
+
+                socket.on('new_user', function(data){
+                    $("#error").html("");
+                    current_user = data.new_user_name;
+                    var messages = data.messages;
+                    var all_messages = "";
+                    $(".text").append( "<h4>" + current_user + " has joined the chat</h4>");
+                    for (var i = 0; i < messages.length; i++) {
+                        all_messages += "<p>" + messages[i].name + ": " + messages[i].message + "</p>";
+                    }
+
+                    $('.text').append(all_messages);
+
+                });
+
+                $("#send").click(function(){
+                    var message = $("#message").val()
+                    socket.emit('get_message', {message: message, user: current_user})
+                    $(".text").val(' ');
+
+                });
+
+                socket.on('messages', function(data){
+                    console.log(data)
+
+                    $(".text").append( "<div class = 'name'>" + data.user +" : " +"</div></p>"+  data.text + "</p> <br>")
+                });
+
+
+
+
+            })
+
+        </script>
+        <style>
+
+            .text{
+                border: 1px solid black;
+                width: 60%;
+                height: auto;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            #message{
+                width: 60%;
+                height: 30%;
+
+            }
+            h4{
+                color: #fc8eac;
+            }
+            .name{
+                color: #fc8eac;
+            }
+            .name, p{
+                display: inline-block;
+            }
+            h2{
+                text-align: center;
+            }
+            .tbox{
+                text-align: center;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Conversation Board</h2>
+        <div id = "error"> </div>
+        <div class= "text">
+        </div><br>
+
+
+        <div class = 'tbox'>
+            <textarea class = "text" id= "message" rows = "3" cols= "130"  placeholder="enter your message here."> </textarea> <br>
+            <button id = "send" > Send </button>
+        </div>
+
+    </body>
+</html>
