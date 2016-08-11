@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app='ContrApp'>
+<head>
+	<title>Controller Fun</title>
+	   <script src='bower_components/angular/angular.js'/></script>
+	   <script type="text/javascript">
+	   	var app = angular.module('ContrApp', []);
+	   	app.controller('foodController', function($scope){
+	   		$scope.foods = [
+	   		{name: 'Pizza'},
+	   		{name: 'BBQ'},
+	   		{name: 'Fries'},
+	   		{name: 'Salad'},
+	   		{name: 'Steak'}
+	   		];
+
+	   		$scope.hide = true;
+	   		$scope.free = 'Freedom';
+	   		$scope.addFood = function(){
+	   			$scope.foods.push($scope.newFood);
+	   			$scope.newFood = {}
+	   		}
+	   		$scope.HideorShow = function(){
+	   			if($scope.free == 'Freedom'){
+	   				$scope.free = '';
+	   			}
+	   			else{
+	   				$scope.free = 'Freedom';
+	   			}
+	   		}
+	   	})
+	   </script>
+
+
+</head>
+<body>
+	<div ng-controller="foodController">
+		<form ng-submit='addFood()'>
+			Favorite Food: <input type="text" ng-model="newFood.name">
+			<input type="submit" value="Add Food">
+		</form>
+		<p>Currently typing <span ng-bind="newFood.name"></span></p>
+		<ul>
+			<li ng-repeat="food in foods | filter: {name:'Pizza'}">{{food.name}}</li>
+		</ul>
+	<button ng-click='HideorShow()'>Hide or Show the value below</button>
+		<p>{{free}}</p>
+	<div ng-hide={{hide}}>
+		<p>This is hidden</p>
+	</div>
+		<p ng-init="love=true">If love is true this ---> <span ng-if='love'>HERE </span> <-------- will show</p>
+	<div ng-show={{hide}}>
+		<p>This is not hidden</p> 
+	</div>
+
+	</div>
+
+</body>
+</html>
