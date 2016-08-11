@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>mongoose dashboard</title>
+        <style>
+            *{
+                text-align: center;
+            }
+
+            table{
+                padding: 20px;
+                margin: 0 auto;
+            }
+            button{
+                width: 200px;
+                height: 50px;
+                color: white;
+                background-color: lightgreen;
+                border-radius: 70%;
+            }
+        </style>
+    </head>
+    <body>
+        <button><a href="/monsters/new">ADD A MONSTER</a></button>
+
+        <br><br>
+
+        <h2> MONSTERS </h2>
+        <table>
+            <tr>
+                <th>NAME</th>
+                <th>TYPE</th>
+                <th>SIZE</th>
+                <th>MOOD</th>
+                <th>ACTION</th>
+            </tr>
+            <% for(var i = 0; i < info.length; i++){ %>
+            <tr>
+                <td><a href="/monsters/<%=info[i].id%>"><%= info[i].name %></td>
+                <td><%= info[i].type %></td>
+                <td><%= info[i].size %></td>
+                <td><%= info[i].mood %></td>
+                <td><form action = "/monsters/<%=info[i].id%>/edit"><input type = "submit" value = "EDIT" ></form> <form action = "/monsters/<%=info[i].id%>/delete" method = "post"> <input type = "submit" value= "DELETE" ></form></td>
+            </tr>
+            <% } %>
+        </table>
+    </body>
+</html>
