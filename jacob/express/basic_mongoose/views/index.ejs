@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Orcas</title>
+</head>
+<body>
+<h2>Here are all the Orcas!</h2>
+<% for (i in orcas){ %>
+	<h3><a href="/orcas/<%= orcas[i]._id %>"><%= orcas[i].name %></a></h3>
+	<p>Size: <%= orcas[i].size %></p>
+	<p>Mental Stability: <%= orcas[i].mental_stability %></p>
+	<a href="/orcas/<%= orcas[i]._id %>/edit ">Edit</a>
+	<a href="/orcas/<%= orcas[i]._id %>/destroy">Remove</a>
+	<hr>
+<% } %>
+<a href="/orca/new">Add an Orca</a>
+</body>
+</html>
