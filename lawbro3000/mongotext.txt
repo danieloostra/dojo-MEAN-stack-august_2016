@@ -1,0 +1,79 @@
+> db.students.insert( {name: 'Lawrence', home_state:'NJ', lucky_number: 13, birthday: {month: 3, day: 19, year: 1999}} )
+WriteResult({ "nInserted" : 1 })
+> db.students.insert( {name: 'Allen', home_state:'VA', lucky_number: 21, birthday: {month: 3, day: 19, year: 1969}} )
+WriteResult({ "nInserted" : 1 })
+> db.students.insert( {name: 'Karen', home_state:'VA', lucky_number: 420, birthday: {month: 1, day: 1, year: 2000}} )
+WriteResult({ "nInserted" : 1 })
+> db.students.insert( {name: 'Ai', home_state:'BJ', lucky_number: 007, birthday: {month: 1, day: 1, year: 2000}} )
+WriteResult({ "nInserted" : 1 })
+> db.students.insert( {name: 'Ai', home_state:'BJ', lucky_number: 007, birthday: {month: 1, day: 1, year: 2000}} )
+WriteResult({ "nInserted" : 1 })
+> db.students.insert( {name: 'Igor', home_state:'MI', lucky_number: 8, birthday: {month: 8, day: 23, year: 1948}} )
+WriteResult({ "nInserted" : 1 })
+> db.students.find()
+{ "_id" : ObjectId("57ab56ba3dc568bb4180c774"), "name" : "Lawrence", "home_state" : "NJ", "lucky_number" : 13, "birthday" : { "month" : 3, "day" : 19, "year" : 1999 } }
+{ "_id" : ObjectId("57ab56fc3dc568bb4180c775"), "name" : "Allen", "home_state" : "VA", "lucky_number" : 21, "birthday" : { "month" : 3, "day" : 19, "year" : 1969 } }
+{ "_id" : ObjectId("57ab573f3dc568bb4180c776"), "name" : "Karen", "home_state" : "VA", "lucky_number" : 420, "birthday" : { "month" : 1, "day" : 1, "year" : 2000 } }
+{ "_id" : ObjectId("57ab57653dc568bb4180c777"), "name" : "Ai", "home_state" : "BJ", "lucky_number" : 7, "birthday" : { "month" : 1, "day" : 1, "year" : 2000 } }
+{ "_id" : ObjectId("57ab57b93dc568bb4180c778"), "name" : "Ai", "home_state" : "BJ", "lucky_number" : 7, "birthday" : { "month" : 1, "day" : 1, "year" : 2000 } }
+{ "_id" : ObjectId("57ab57fc3dc568bb4180c779"), "name" : "Igor", "home_state" : "MI", "lucky_number" : 8, "birthday" : { "month" : 8, "day" : 23, "year" : 1948 } }
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("57ab56ba3dc568bb4180c774"),
+	"name" : "Lawrence",
+	"home_state" : "NJ",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 3,
+		"day" : 19,
+		"year" : 1999
+	}
+}
+
+
+coding', 'brunch', 'MongoDB'. 
+
+
+db.students.update({}, { $set: {interest: ['coding','brunch','MongoDB']}} ,{multi:true});
+
+
+
+Add some unique interests for each particular students into each of their interest arrays.
+
+db.students.update({name: 'Lawrence'} ,{$push: {interest: 'snowboarding'}})
+
+
+
+db.students.update({name: 'Lawrence'} ,{$push: {interest: 'taxes'}})
+
+> db.students.update( { name: 'Lawrence' }, { $pop: { interest: -1 } } )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> 
+
+
+
+Remove a student whose lucky number is greater than 5 (JUST ONE)
+
+db.students.remove( { name : "Igor" } )
+
+
+
+After delelting all my users I uploaded my students from a file.
+
+ 2016-08-10T14:37:33.290-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:51126 #3 (2 connections now open)
+2016-08-10T14:37:33.305-0400 I COMMAND  [conn3] CMD: drop my_first_db.students
+2016-08-10T14:37:33.311-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:51127 #4 (3 connections now open)
+2016-08-10T14:37:33.372-0400 I NETWORK  [conn3] end connection 127.0.0.1:51126 (2 connections now open)
+2016-08-10T14:37:33.373-0400 I NETWORK  [conn4] end connection 127.0.0.1:51127 (1 connection now open)
+cl
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,103 @@
+{
+	"_id" : 1,
+	"name" : "Lawrence",
+	"home_state" : "NJ",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 3,
+		"day" : 19,
+		"year" : 1999
+	},
+	"interest" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	],
+	"interests" : [
+		"snowboarding",
+		"dj"
+	]
+}
+{
+	"_id" : 2,
+	"name" : "Allen",
+	"home_state" : "VA",
+	"lucky_number" : 21,
+	"birthday" : {
+		"month" : 3,
+		"day" : 19,
+		"year" : 1969
+	},
+	"interest" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : 3,
+	"name" : "Karen",
+	"home_state" : "VA",
+	"lucky_number" : 420,
+	"birthday" : {
+		"month" : 1,
+		"day" : 1,
+		"year" : 2000
+	},
+	"interest" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" :4,
+	"name" : "Ai",
+	"home_state" : "BJ",
+	"lucky_number" : 7,
+	"birthday" : {
+		"month" : 1,
+		"day" : 1,
+		"year" : 2000
+	},
+	"interest" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : 5, 
+	"name" : "Ai",
+	"home_state" : "BJ",
+	"lucky_number" : 7,
+	"birthday" : {
+		"month" : 1,
+		"day" : 1,
+		"year" : 2000
+	},
+	"interest" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("57ab57fc3dc568bb4180c779"),
+	"name" : "Igor",
+	"home_state" : "MI",
+	"lucky_number" : 8,
+	"birthday" : {
+		"month" : 8,
+		"day" : 23,
+		"year" : 1948
+	},
+	"interest" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	],
+	"interests" : [
+		"snowboarding"
+	]
+}
