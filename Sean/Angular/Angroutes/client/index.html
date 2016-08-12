@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app = 'app'>
+<head>
+	<title>Hello</title>
+	<script type="text/javascript" src="angular/angular.js"></script>
+	<script type="text/javascript" src="angular-route/angular-route.js"></script>
+	<script type="text/javascript">
+	var app = angular.module('app', ['ngRoute']);
+	app.config(function($routeProvider){
+		$routeProvider
+			.when('/',{
+				templateUrl: 'partials/adduserlist.html',
+				controller: 'CustomizeUsersController'
+			})
+			.when('/list',{
+				templateUrl: 'partials/userlist.html',
+				controller: 'UserListsController'
+			})
+			.when('/users',{
+				templateUrl: 'partials/adduserlist.html',
+				controller: 'CustomizeUsersController'
+			})
+			.otherwise({
+				redirectTo: '/'
+			})
+	})
+
+	app.factory('userFactory', function(){
+		var users = [			
+			{first_name: 'Sean', last_name: 'Kendrick', favlang: 'Python'},
+			{first_name: 'Karen', last_name: 'Chin', favlang: 'Java'},
+			{first_name: 'Jacob', last_name: 'Cresent', favlang: 'C++'}
+			]
+		var factory = {}
+
+		factory.index = function(callback){
+			callback(users)
+		}
+		factory.create = function(newuser){
+			users.push(newusers)
+		}
+		factory.destroy = function(index){
+			users.splice(index,1)
+		}
+		factory.show = function(user){
+
+		}
+
+		return factory;
+	})
+	app.controller('CustomizeUsersController', ['$scope', 'userFactory', function($scope, userFactory) {  
+	    $scope.users = [];
+	    userFactory.index(function(data){
+	       $scope.users = data
+      	})
+      	$scope.create = function(){
+      		userFactory.create($scope.newUser);
+      	}
+      	$scope.destroy = function(index){
+      		userFactory.destroy(index);
+      	}
+
+    }]);
+    app.controller('UserListsController', ['$scope', 'userFactory', function($scope,userFactory){
+    	$scope.users =[];
+    	userFactory.index(function(data){
+    		$scope.users = data
+    	})
+    }]);
+
+
+		
+	</script>
+
+</head>
+<body>
+	<a href="#/users">Customize Users</a>&nbsp;&nbsp;<a href="#/list">User List</a>
+	<div ng-view>
+	</div>
+
+
+</body>
+</html>
