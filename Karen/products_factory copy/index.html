@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang= 'en' ng-app = 'app' >
+    <head>
+        <meta charset="utf-8">
+        <title>products</title>
+        <script src = "bower_components/angular/angular.js"></script>
+        <script type="text/javascript">
+            var app = angular.module('app', []);
+
+            app.factory('productsFactory', function(){
+                var products = [
+                    {name: 'Apples', price: '1'},
+                    {name: 'Car', price: '250000'},
+                    {name: 'Computer', price: '1500'},
+                    {name: 'Dog', price: '1000'},
+                    {name: 'Hair Tie', price: '5'}];
+                var factory = {};
+
+                factory.getProducts = function (callback){
+                    callback(products);
+                }
+                return factory;
+            });
+
+            app.controller('productsController', ['$scope', 'productsFactory', function($scope, productsFactory){
+                $scope.products = [];
+                productsFactory.getProducts(function (data){
+                    $scope.products = data;
+                });
+                    $scope.addProduct = function(){
+                        $scope.products.push($scope.newUser);
+                        $scope.newProducts = {};
+                    }
+
+                    $scope.printIndex = function(product){
+                        console.log(product);
+                    }
+
+                    $scope.deleteProduct = function(product){
+                        $scope.products.splice(product, 1);
+                    }
+
+            }]);
+
+        </script>
+    </head>
+    <body>
+        <div ng-controller= "productsController" id ="productsController">
+
+        <h2>Products Controller</h2>
+            <form>
+                Product Name: <input type='text' ng-model = 'newProducts.name'><br>
+                Product Price: <input type='text' ng-model = 'newProducts.price' aria-label="price"><br>
+                <input type="submit" value= 'Add Product' ng-click='addProduct()'>
+            </form>    <hr>
+
+            <table>
+                <tr>
+                    <th> Name </th>
+                    <th> Price </th>
+                    <th> Actions </th>
+                </tr>
+                <tr ng-repeat= 'x in products'>
+                    <td>{{x.name}}</td>
+                    <td><span id="currency-default">{{x.price | currency}}</span></td>
+                    <td> <input type="submit" value="Delete" ng-click='deleteProduct($index)'> </td>
+                </tr>
+            </table>
+
+
+        </div>
+    </body>
+</html>
