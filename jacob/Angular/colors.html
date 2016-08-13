@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app='colors'>
+<head>
+	<title>Colors</title>
+<script src='./colors/crayola.json'></script>
+<script src='bower_components/angular/angular.js'/></script>
+<script>
+		var colorModule = angular.module('colors',[]);	
+		colorModule.controller('divController', function($scope){
+			$scope.colors = colors;
+		});		 
+</script>
+</head>
+<body>
+	<div ng-controller= " divController">
+		<input type="text" ng-model="search">
+		<table>
+			<thead>
+				<th>Color Name</th>
+				<th>HEX</th>
+				<th>Color</th>
+			</thead>
+				<tr ng-repeat= "color in colors | filter: search">
+					<td>{{color.name}}</td>
+					<td>{{color.hex}}</td>
+					<td style = "background-color: {{color.hex}};"></td>
+				</tr>
+		</table>
+	</div>
+</body>
+</html>
