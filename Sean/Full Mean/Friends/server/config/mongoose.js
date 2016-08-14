@@ -27,9 +27,6 @@ process.on( 'SIGINT', function() {
   });
 });
 
-//read all of the files in the models dir and
-//  check if it is a javascript file before requiring it
-
 fs.readdirSync( models_path ).forEach( function( file ) {
   if( reg.test( file ) ) {
     require( path.join( models_path, file ) );

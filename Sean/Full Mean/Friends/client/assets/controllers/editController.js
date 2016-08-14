@@ -6,18 +6,13 @@ var edit = function(){
     date.toLocaleDateString('en-US')
     returnedData.birthdate = date
     $scope.editUser = returnedData
-
-
   });
 };
 edit()
-
 $scope.editedUser = function(){
   console.log('here')
   friendsFactory.update($routeParams.id, $scope.editUser,function(user){
     $location.url('/friends')
-
   })
 }
-
 }]);

@@ -23,8 +23,6 @@ app.factory('friendsFactory', ['$http', function($http) {
         users = returned_data.data;
         callback(users);
       })
- //Note: this can be shortened to $http.get('/friends').then(callback); 
- //But only if you only want to run the callback from the controller.
     };
     this.delete = function(id,callback){
       var url ='/friends/delete/' + id

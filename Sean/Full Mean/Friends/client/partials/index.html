@@ -10,7 +10,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat='user in users'>
+		<tr ng-repeat='user in users'><!--look into filtering search for dates -->
 			<td>{{user.first_name}} {{user.last_name}}</td>
 			<td><a href="#/friends/{{user._id}}">show</a></td>
 			<td><a href="#/friends/{{user._id}}/edit">edit</a></td>
