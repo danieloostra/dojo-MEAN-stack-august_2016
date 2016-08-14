@@ -14,7 +14,7 @@
 			<td>{{user.first_name}} {{user.last_name}}</td>
 			<td><a href="#/friends/{{user._id}}">show</a></td>
 			<td><a href="#/friends/{{user._id}}/edit">edit</a></td>
-			<td><a href="#/friends/delete/{[user._id}}">delete</a></td>
+			<td><button ng-click="delete(user._id)">delete</button></td>
 		</tr>
 	</tbody>
 </table>

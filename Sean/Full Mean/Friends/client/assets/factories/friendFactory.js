@@ -11,8 +11,11 @@ app.factory('friendsFactory', ['$http', function($http) {
         }
       });
     };
-    this.update = function(){ // what parameters do we need?
-      // Your code here
+    this.update = function(routeid,newfriend,callback){
+      var url = '/friends/' + routeid 
+      $http.post(url, newfriend).then(function(user){
+        callback(user)
+      })
     };
     this.index = function(callback){
       //call this method if you want to update or set the friends variable
@@ -23,8 +26,12 @@ app.factory('friendsFactory', ['$http', function($http) {
  //Note: this can be shortened to $http.get('/friends').then(callback); 
  //But only if you only want to run the callback from the controller.
     };
-    this.delete = function(){// what parameters do we need?
-        // Your code here
+    this.delete = function(id,callback){
+      var url ='/friends/delete/' + id
+      $http.get(url).then(function(returned_data){
+        users= returned_data.data
+        callback(users)
+      })
     };
     this.show = function(routeid,callback){
       var url = '/friends/'+routeid 

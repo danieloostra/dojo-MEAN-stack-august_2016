@@ -1,4 +1,4 @@
-app.controller('editController', ['$scope','friendsFactory', '$routeParams', function($scope, friendsFactory, $routeParams) {
+app.controller('editController', ['$scope','friendsFactory', '$routeParams', '$location', function($scope, friendsFactory, $routeParams, $location) {
 $scope.user; 
 var edit = function(){
   friendsFactory.edit($routeParams.id,function(returnedData){
@@ -12,8 +12,12 @@ var edit = function(){
 };
 edit()
 
-$scope.editUser = function(){
-  friendsFactory.edit($routeParams.id)
+$scope.editedUser = function(){
+  console.log('here')
+  friendsFactory.update($routeParams.id, $scope.editUser,function(user){
+    $location.url('/friends')
+
+  })
 }
 
 }]);
