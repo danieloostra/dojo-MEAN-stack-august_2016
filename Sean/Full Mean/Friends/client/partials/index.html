@@ -1,0 +1,22 @@
+<input type="date" ng-model="search">
+
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Show</th>
+			<th>Update</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat='user in users'>
+			<td>{{user.first_name}} {{user.last_name}}</td>
+			<td><a href="#/friends/{{user._id}}">show</a></td>
+			<td><a href="#/friends/{{user._id}}/edit">edit</a></td>
+			<td><a href="#/friends/delete/{[user._id}}">delete</a></td>
+		</tr>
+	</tbody>
+</table>
+
+<button><a href="#/friends/new">New Friend</a></button>
