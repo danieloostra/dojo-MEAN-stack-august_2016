@@ -7,8 +7,8 @@ var mongoose = require('mongoose');
 // --------------------------------------------------------
 mongoose.connect('mongodb://localhost/quoting_dojo');
 var UserSchema = new mongoose.Schema({
- name: String,
- quote: String
+ name: {type:String,required:true, minlength:3},
+ quote: {type:String,required:true,maxlength:10}
 },{timestamps: true}
 );
 mongoose.model('User', UserSchema);
