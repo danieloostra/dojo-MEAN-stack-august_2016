@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="./main.css" media="screen" charset="utf-8">
+	<script src="../angular/angular.js"></script>
+	<script src="../angular-route/angular-route.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('app', ['ngRoute']);
+		app.config(function($routeProvider){
+			$routeProvider
+			.when('/',{
+				templateUrl: 'partials/customizeUsers.html',
+				controller: 'userController'
+			})
+			.when('/list',{
+				templateUrl: 'partials/userList.html',
+				controller: 'listController'
+			})
+			.otherwise({
+				redirectTo: '/'
+			});
+		});
+		app.factory('userFactory', ['$http', function($http) {
+			var factory = {};
+			var users = [];
+			factory.index = function(callback){
+				callback(users);
+			};
+			factory.create = function(user, callback) {
+				users.push(user);
+				callback(users);
+			}
+			factory.delete = function(id, callback) {
+				users.splice(id,1);
+				callback(users);
+			};
+			factory.buy = function(id, callback){
+				if (users[id].qty === 0){
+					callback(users);
+				}
+				else {
+					users[id].qty--;
+					callback(users);
+				}
+			};
+			return factory;
+		}]);
+		app.controller('userController', ['$scope', 'userFactory', function($scope, userFactory) {
+			function setUsers(data){
+				$scope.users = data;
+				$scope.user = {};
+			}
+
+			$scope.users = {};
+			$scope.user = {};
+
+			$scope.index = function(){
+				userFactory.index(setUsers);
+			};
+
+			$scope.index();
+
+			$scope.create = function(){
+				userFactory.create($scope.user, setUsers);
+			};
+			$scope.delete = function(id){
+				userFactory.delete(id, setUsers);
+			};
+		}]);
+		app.controller('listController', ['$scope', 'userFactory', function($scope, userFactory) {
+			function setUsers(data){
+				$scope.users = data;
+				$scope.user = {};
+			}
+
+			$scope.users = {};
+			$scope.user = {};
+
+			$scope.index = function(){
+				userFactory.index(setUsers);
+			};
+
+			$scope.index();
+		}]);
+
+	</script>
+</head>
+<body>
+	<h3><a href="#/">Customize Users</a> | <a href="#/list">User List</a></h3>
+	<div ng-view></div>
+</body>
+</html>

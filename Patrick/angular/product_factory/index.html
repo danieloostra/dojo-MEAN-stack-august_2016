@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="utf-8">
+	<title>Product Factory</title>
+	<script src=../bower_components/angular/angular.js></script>
+	<script type="text/javascript">
+		var appModule = angular.module('app', []);
+
+// ---------------Factory-------------------------------------------------------
+		appModule.factory('productFactory', function() {
+			var products = [];
+			var factory = {};
+			factory.getProducts = function(callback) {
+				callback(products);
+			};
+			factory.addProduct = function(product, callback) {
+				products.push(product);
+				function callback(products) {};
+			}
+			factory.deleteProduct = function(product, callback) {
+				products.splice(product, 1);
+				function callback(products) {};
+			}
+			return factory;
+		});
+
+// ---------------Controller----------------------------------------------------
+
+		appModule.controller('productController', ['$scope', 'productFactory', function($scope, productFactory) {
+			productFactory.getProducts(function(factory_data) {
+				$scope.products = factory_data;
+			});
+			$scope.addProduct = function(){
+				productFactory.addProduct($scope.product);
+				$scope.product = {}
+			}
+			$scope.deleteProduct = function(product) {
+				productFactory.deleteProduct(product);
+			}
+		}]);
+	</script>
+<!---------------------------------------------------------------------->
+
+</head>
+<body>
+	<fieldset ng-controller='productController'>
+		<legend>Products Controller</legend>
+		<form>
+			<label>Product Name: </label><input type="text" ng-model="product.name"><br>
+			<label>Product Price: </label><input type="number" ng-model="product.price"><br>
+		</form>
+		<button ng-click='addProduct()'>Add Product</button>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat='product in products | orderBy: "price" track by $index'>
+					<td>{{product.name}}</td>
+					<td>{{product.price | currency:"$"}}</td>
+					<td><button ng-click='deleteProduct($index)'>Delete Product</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+
+</body>
+<style media="screen">
+	form {
+	display: inline-block;
+	text-align: right;
+	}
+	table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 15px;
+	}
+
+	td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+	}
+
+	tr:nth-child(even) {
+	background-color: #dddddd;
+	}
+</style>
+</html>
