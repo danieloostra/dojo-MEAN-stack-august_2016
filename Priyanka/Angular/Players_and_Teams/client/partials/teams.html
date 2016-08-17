@@ -1,0 +1,21 @@
+<div ng-controller="TeamController as vm">
+    <label for="Name">Team Name</label>
+    <input type="text" ng-model="vm.teamName">
+    <button type="button" ng-click="vm.createTeam()">Add New Team</button>
+    <table>
+
+    {{2+2}}
+        <tr>
+            <th>Team Name</th>
+            <th>Actions</th>
+        </tr>
+        <tbody>
+            <tr ng-repeat="team in vm.teamList track by $index">
+                <td>{{team}}</td>
+                <td>
+                    <button ng-click="vm.deleteTeam($index)">Remove Team</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,19 @@
+<div ng-controller="PlayerController as vm">
+    <label for="Name">Player Name</label>
+    <input type="text" ng-model="vm.playerName">
+    <button type="button" ng-click="vm.createPlayer()">Create Player</button>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+        <tbody>
+            <tr ng-repeat="player in vm.playerList track by $index">
+                <td>{{player.playerName}}</td>
+                <td>
+                    <button ng-click="vm.deletePlayer($index)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

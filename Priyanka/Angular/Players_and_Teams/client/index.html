@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title></title>
+    <!-- THESE TWO VERSIONS BELOW MUST MATCH (good thing bower will catch that for us, but be aware if you are using CDN's)!!! -->
+    <script src="./angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+    <script>
+    //  inject the ngRoute dependency in the module.
+    var myApp = angular.module('myApp', ['ngRoute']);
+    //  use the config method to set up routing:
+    myApp.config(function($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'partials/players.html',
+                controller: 'PlayerController'
+            })
+            .when('/partial2', {
+                templateUrl: 'partials/teams.html',
+                controller: 'TeamController'
+            })
+
+	        .when('/partial3', {
+	            templateUrl: 'partials/associations.html',
+	            controller: 'AssociationController'
+	        })
+	        .otherwise({
+	            redirectTo: '/'
+	        });
+    });
+
+    // --------------------------------------------------------------------------------
+    // 1.playerFactory:
+
+    myApp.factory('playerFactory', function() {
+        var listofPlayers = [];
+
+        return {
+            addPlayer: function(player) {
+				// Initially player has no team.
+            	player.team = 'NO TEAM'
+                listofPlayers.push(player);
+            },
+
+            getPlayers: function(callbackFn) {
+                callbackFn(listofPlayers);
+            },
+
+            deletePlayer: function(index) {
+                listofPlayers.splice(index, 1);
+            },
+
+            addPlayerToTheTeam: function (index, teamName) {
+            	listofPlayers[index]['team'] =  teamName;
+            	console.log(listofPlayers[index].team);
+            	console.log(listofPlayers[index]);
+            },
+
+            removePlayerFromTheTeam: function (index) {
+            	listofPlayers[index].team = 'NO TEAM'
+            }
+        };
+    });
+
+    // 2.teamFactory:
+
+    myApp.factory('teamFactory', function() {
+        var listofTeams = [];
+
+        return {
+            addTeam: function(team) {
+                listofTeams.push(team);
+            },
+            getTeam: function(callbackFn) {
+                callbackFn(listofTeams);
+            },
+
+            deleteTeam: function(index) {
+                listofTeams.splice(index, 1);
+            }
+        };
+    });
+
+    // 1.Player Controller--------------------------------------------------------------------------------
+
+    myApp.controller('PlayerController', ['playerFactory', PlayerController])
+
+    // myAppModule.controller('OrdersController',)
+
+    function PlayerController(playerFactory, $scope, $location) {
+        var vm = this;
+
+        playerFactory.getPlayers(function(data) {
+            vm.playerList = data
+        });
+
+        vm.createPlayer = function() {
+            playerFactory.addPlayer({
+                playerName: vm.playerName
+            });
+
+            vm.playerName = '';
+        }
+
+        vm.deletePlayer = function(index) {
+            playerFactory.deletePlayer(index);
+        }
+    }
+
+
+    // 1.Team Controller--------------------------------------------------------------------------------
+
+
+    myApp.controller('TeamController', ['teamFactory', TeamController])
+
+    // myAppModule.controller('OrdersController',)
+
+    function TeamController(teamFactory, $scope, $location) {
+        var vm = this;
+
+        teamFactory.getTeam(function(data) {
+            vm.teamList = data;
+        });
+
+        vm.createTeam = function() {
+            teamFactory.addTeam(vm.teamName);
+
+            vm.teamName = '';
+        }
+
+        vm.deleteTeam = function(index) {
+            teamFactory.deleteTeam(index);
+        }
+    }
+
+    // 1.Association Controller--------------------------------------------------------------------------------
+    myApp.controller('AssociationController', ['playerFactory', 'teamFactory', AssociationController])
+
+    function AssociationController(playerFactory, teamFactory) {
+        var am = this;
+
+        am.associationArray = [];
+
+        playerFactory.getPlayers(function(data) {
+            am.playerList = data;
+        });
+
+        teamFactory.getTeam(function(data) {
+            am.teamList = data;
+        });
+
+        am.assignment = function() {
+        	playerFactory.addPlayerToTheTeam(am.assign.player, am.assign.team);
+
+        }
+
+        am.deleteAssignment = function (index) {
+        	playerFactory.removePlayerFromTheTeam(index)
+        }
+    }
+
+
+    // --------------------------------------------------------------------------------
+    </script>
+</head>
+
+<body>
+    <div>
+        <a href="#/">Players</a> | <a href="#/partial2"> Teams</a>| <a href="#/partial3"> Associations </a>
+        <div ng-view="">
+        </div>
+    </div>
+</body>
+
+</html>

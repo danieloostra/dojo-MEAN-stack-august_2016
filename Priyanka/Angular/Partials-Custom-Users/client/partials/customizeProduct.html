@@ -1,0 +1,26 @@
+<div ng-controller="ProductsController as vm">
+    <label for="Product">Product</label>
+    <input type="text" ng-model="vm.product.productName">
+    <label for="Product Price">Product Price</label>
+    <input type="text" ng-model="vm.product.productPrice">
+    <span ng-model="vm.product.Quantity"></span>
+    <button type="button" ng-click="vm.createProduct()">Create Product</button>
+    <table>
+
+    {{2+2}}
+        <tr>
+            <th>Product</th>
+            <th>Product Price</th>
+            <th>Action</th>
+        </tr>
+        <tbody>
+            <tr ng-repeat="p in vm.productList track by $index">
+                <td>{{p.productName}}</td>
+                <td>{{p.productPrice | currency}}</td>
+                <td>
+                    <button ng-click="vm.deleteProduct($index)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
