@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    </style>
+  </head>
+  <body>
+    <div ng-controller = playersController>
+      <form ng-submit = 'createPlayers()'>
+        <p>Name: <input type="text" ng-model = "player.name"> <button type="submit">Add Player</button></p>
+      </form>
+      {{players}}
+
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody  ng-repeat = "playa in players">
+            <tr>
+              <td>{{playa.name}}</td>
+              <td><button ng-click = "removePlayers($index)" type="submit">Remove Player</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+    </div>
+
+  </body>
+</html>

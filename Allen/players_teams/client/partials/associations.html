@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    </style>
+  </head>
+  <body>
+    <div ng-controller = associationsController>
+      <form ng-submit = "createAssociations()">
+        <p><select ng-model = "association.player">
+              <option  ng-repeat = "playa in players" value= {{playa.name}} ng-bind = "playa.name"></option>
+        <!-- changed value -->
+          </select>
+
+          <select ng-model = "association.team"> <!-- changed value -->
+              <option  ng-repeat = "tea in teams" value= {{tea.name}} ng-bind = "tea.name"></option>
+          </select>
+          <button type="submit">Assign player to team</button></p>
+      </form>
+      {{teams}}{{player}}{{association}}
+
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Team</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat = "assoc in associations">
+            <tr >
+              <td>{{assoc.player}}</td>
+              <td>{{assoc.team}}</td>
+
+              <td><button ng-click = "removeAssociation($index)" type="submit">Clear Assignment</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+    </div>
+
+  </body>
+</html>

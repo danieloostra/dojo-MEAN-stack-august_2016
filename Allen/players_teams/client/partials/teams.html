@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    </style>
+  </head>
+  <body>
+    <div ng-controller = teamsController>
+      <form ng-submit = 'createTeams()'>
+        <p>Name: <input type="text" ng-model = "team.name"> <button type="submit">Add Team</button></p>
+      </form>
+      {{teams}}
+
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody  ng-repeat = "tea in teams">
+            <tr>
+              <td>{{tea.name}}</td>
+              <td><button ng-click = "removeTeams($index)" type="submit">Remove Team</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+    </div>
+
+  </body>
+</html>
