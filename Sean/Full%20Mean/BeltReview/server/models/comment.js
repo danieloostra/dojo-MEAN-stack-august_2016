@@ -1,0 +1,9 @@
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
+
+var CommentSchema = new mongoose.Schema({
+	_user: {type: Schema.Types.ObjectId, ref: 'User'},
+	_post: {type: Schema.Types.ObjectId, ref: 'Post'},
+	content: {type: String},
+}, {timestamps: true})
+var Comment = mongoose.model('Comment', CommentSchema)
