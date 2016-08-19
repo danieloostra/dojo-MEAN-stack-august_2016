@@ -1,0 +1,15 @@
+.filter, .allfriends{
+    display: inline-block;
+}
+
+*{
+    text-align: center;
+    padding: 20px;
+    background-color: orange;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+
+}
