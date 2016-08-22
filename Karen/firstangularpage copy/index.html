@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app = 'app' >
+    <head>
+        <meta charset="utf-8">
+        <script src = "bower_components/angular/angular.js"></script>
+        <script type="text/javascript">
+            var app = angular.module('app', []);
+
+            app.controller('moodyController', ['$scope', function($scope){
+                $scope.moods = [
+                    {color: 'Steel blue', feels: 'tranqil'},
+                    {color: 'ruby red', feels: 'passionate'},
+                    {color: 'juniper', feels: 'envious'},
+                    {color: 'pink', feels: 'flushed'},
+                    {color: 'chartreuse', feels: 'sickly'}
+                ];
+
+                $scope.addMood = function(){
+                    $scope.moods.push($scope.newMood);
+                    $scope.newMood = {};
+                }
+
+            }]);
+
+        </script>
+    </head>
+    <body>
+        <div ng-controller= "moodyController" id ="moodyController">
+
+        <p ng-repeat= 'x in moods'> {{x.color}}: {{x.feels}}</p>
+
+        <hr>
+        <form>
+            Color: <input type='text' ng-model = 'newMood.color'>
+            Feels: <input type='text' ng-model = 'newMood.feels'>
+            <input type="submit" value= 'Add' ng-click='addMood()'>
+        </form>
+
+
+    </div>
+    </body>
+</html>
