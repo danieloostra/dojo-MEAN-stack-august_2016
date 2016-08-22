@@ -1,0 +1,99 @@
+CTYPE html>
+<html lang='en' ng-app='myHoneyApp'>
+
+<head>
+    <meta charset="utf-8">
+    <title>index</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+     <link rel="stylesheet" href="main.css">
+     <script type="text/javascript">
+    </script>
+    <script>
+        var myApp = angular.module('myHoneyApp', []);
+        console.log(myApp);
+    </script>
+
+</head>
+
+<body>
+    <div ng-controller='usersController'>
+
+        <form ng-submit='createUser()'>
+            <input type="text" ng-model='user.firstName' placeholder="First Name">
+            <input type="text" ng-model='user.lastName'  placeholder="Last Name">
+            <input type="text" ng-model='user.favLang'placeholder="Favorite Language">
+            <input type="date" placeholder="Date Created">
+            <input type="submit" placeholder="add user">
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Favorite Language</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            </tbody>
+               <tr ng-repeat='userObj in users'>
+		<td>{{userObj.firstName}}</td>
+    <td>{{userObj.lastName}}</td>
+    <td>{{userObj.favLang}}</td>
+    <td><button ng-click='deleteUser(userObj)'</button>delete</td>
+		</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var myApp = angular.module('myHoneyApp');
+
+        myApp.controller('usersController', ['$scope', function($scope) {
+                $scope.createUser=function(){
+                  $scope.users.push($scope.user)
+                }
+
+                $scope.deleteUser=function(user2delete){
+                  $scope.users = $scope.users.filter(function(userObj){
+                    return userObj !== user2delete;
+                  })
+
+                }
+                $scope.users = [
+                  {
+                    firstName:"Lawrence",
+                    lastName:"Brown",
+                    favLang:"javascript"
+                  },
+                  {
+                    firstName:"Jesus",
+                    lastName:"Christ",
+                    favLang:"Hebrew"
+                  },
+                  {
+                    firstName:"Miss",
+                    lastName:"HoneyDijon",
+                    favLang:"House"
+                  },
+                  {
+                    firstName:"the",
+                    lastName:"BlackMadonna",
+                    favLang:'chiHouse'
+                  },
+                  {
+                    firstName:"dog",
+                    lastName:"pound",
+                    favLang:'ruffRuff'
+                  }
+                ];
+
+        }])
+    </script>
+
+</body>
+
+</html>
+
+

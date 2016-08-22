@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <title>QuotingDojo</title>
+
+    <style media="screen">
+        l {
+            list-style: none
+        }
+
+        #topBox {
+            color: black;
+            border: solid;
+            width: 25%;
+            text-align: center;
+            margin-left: 25%;
+            font-family: 'Dosis', sans-serif;
+            background-color: lightblue;
+            border-radius: 25px;
+        }
+
+        form {
+            width: 245px;
+            text-align: right;
+        }
+
+        .form input {
+            margin-left: 20px;
+            margin-bottom: 5px;
+            border-radius: 25px;
+        }
+    </style>
+  </head>
+  <body>
+
+  <h2>Quoting Dojo Quotes :</h2>
+
+        <% for(var key in quotes) { %>
+      "<%= quotes[key].quote %>"<br>
+      -<%= quotes[key].name %> at <%= quotes[key].createdAt %>
+      <hr>
+      <% } %>
+
+  </body>
+</html>

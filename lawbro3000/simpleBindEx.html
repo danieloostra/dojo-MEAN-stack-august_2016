@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+<script>
+  var app = angular.module('app',[]);
+
+  app.controller("favLibController",['$scope', function($scope){
+    $scope.myName='Lawerence';
+    $scope.myFavLang='JavaScript';
+    $scope.myFavLib='AngularJS'
+  }]);
+</script>
+</head>
+<body>
+  <div ng-controller="favLibController">
+
+    {{myName}}<br>
+    {{myFavLang}}<br>
+    {{myFavLib}}<br>
+
+  </div>
+</html>
