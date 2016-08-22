@@ -1,0 +1,13 @@
+<table>
+<thead>
+	<th>First Name<a href="#" ng-click="orderByField='first';">^</a></th>
+	<th>Last Name<a href="#" ng-click="orderByField='last';">^</a></th>
+	<th>Favorite Language<a href="#" ng-click="orderByField='favorite';">^</a></th>
+	<th>Actions</th>
+</thead>
+	<tr ng-repeat= "user in users track by $index">
+		<td>{{user.name}}</td>
+		<td>{{user.last}}</td>
+		<td>{{user.favorite}}</td>
+	</tr>
+</table>

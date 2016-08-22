@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <title>Players and Teams</title>
+    <script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+<script>
+    var playersModule = angular.module('players_teams', ['ngRoute']);
+
+    playersModule.factory('playersFactory', function(){
+      var players = [];
+      var factory = {};
+      factory.getPlayer = function(callback){
+        callback(players);
+       }
+      return factory;
+    });
+    playersModule.factory('teamsFactory', function(){
+      var teams = [];
+      var factory = {};
+      factory.getTeam = function(callback){
+        callback(teams);
+       }
+      return factory;
+    });  
+    playersModule.config(function ($routeProvider) {
+      $routeProvider
+        .when('/',{
+            templateUrl: 'partials/view1.html',
+          controller: 'view1Controller'
+        })
+        .when('/partial2',{
+            templateUrl: 'partials/view2.html',
+          controller: 'view2Controller'
+        })
+        .when('/partial3',{
+            templateUrl: 'partials/view3.html',
+          controller: 'view3Controller'
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+    });
+    playersModule.controller('view1Controller', ['$scope', 'playersFactory', function($scope, playersFactory){
+      $scope.players = [];
+      playersFactory.getPlayer(function(data){
+        $scope.players = data;
+      })
+      $scope.addPlayer = function(){
+        $scope.players.push($scope.newPlayer);
+        $scope.newPlayer = {};
+      }
+      $scope.removePlayer = function(index){
+        $scope.players.splice(index,1);
+      }
+    }]);
+    playersModule.controller('view2Controller', ['$scope', 'teamsFactory', function($scope, teamsFactory){
+      $scope.teams = [];
+      teamsFactory.getTeam(function(data){
+        $scope.teams = data;
+      })
+      $scope.addTeam = function(){
+        $scope.teams.push($scope.newTeam);
+        $scope.newTeam ={};
+      }
+      $scope.removeTeam =  function(index){
+        $scope.teams.splice(index,1);
+      }
+    }]); 
+    playersModule.controller('view3Controller', ['$scope', 'playersFactory', 'teamsFactory', function($scope, playersFactory, teamsFactory){
+      $scope.associations = [];
+      $scope.teams = [];
+      $scope.players = [];
+      playersFactory.getPlayer(function(data){
+        $scope.players = data;
+      })
+      teamsFactory.getTeam(function(data){
+        $scope.teams = data
+      }) 
+      $scope.makeAssociation = function(){
+        $scope.associations.push($scope.newAssociation);
+        $scope.newAssociation = {};
+      } 
+      $scope.removeAssociation = function(index){
+        $scope.associations.splice(index, 1)
+      }
+    }]);
+    </script>
+  </head>
+  <body>
+    <div ng-app='players_teams'>
+        <a href="#/">Players</a> | <a href="#/partial2">Teams</a> | <a href="#/partial3">Associations</a>
+        <div ng-view="">
+        </div>
+    </div>
+  </body>
+</html>

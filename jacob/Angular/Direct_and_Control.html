@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+    <script src='bower_components/angular/angular.js'/></script>
+    <script type='text/javascript'>
+      var myAppModule = angular.module('myApp', []);
+      myAppModule.controller('divController', function ($scope){
+      	$scope.foods = [
+      		{name: "pizza"},
+      		{name: "bbq"},
+      		{name: "fries"}, 
+      		{name: "salad"},
+      		{name: "steak"}
+      	];
+      	$scope.addFood = function(){
+      		$scope.foods.push($scope.newFood);
+      		$scope.newFood = {};
+      	}
+      });
+    </script>
+</head>
+<body>
+<div ng-controller='divController'>
+<form>
+	Favorite Food: <input type="text" ng-model="newFood.name">
+	<input type="submit" value="add food!" ng-click="addFood()">
+</form>
+<p>Currently typing: <span ng-bind ="newFood.name"></span></p>
+<input type="text" ng-model="search" >
+<ul>
+	<li ng-repeat = "food in foods | filter: search ">{{food.name}}</li>
+</ul>
+</div>
+</body>
+</html>

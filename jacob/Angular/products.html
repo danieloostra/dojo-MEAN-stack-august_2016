@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app='products'>
+<head>
+	<title>Products</title>
+<script src='bower_components/angular/angular.js'/></script>
+<script>
+		var productsModule = angular.module('products',[]);			
+
+		productsModule.factory('productsFactory', function(){
+			var products = [];
+			var factory = {};
+			factory.getProducts = function(callback){
+				callback(products);
+			 }
+			return factory;
+		}); 
+		productsModule.controller('productsController',['$scope', 'productsFactory', function($scope, productsFactory){
+			$scope.products = [];
+			productsFactory.getProducts(function(data){
+				$scope.products = data;
+			})
+			$scope.addProduct = function(){
+				$scope.newProduct.quantity = 50;
+				$scope.products.push($scope.newProduct);
+				$scope.newProduct = {};
+			}
+			$scope.removeProduct = function(index){
+				$scope.products.splice(index,1)
+			}
+		}]);
+		productsModule.controller('ordersController', ['$scope', 'productsFactory', function($scope, productsFactory){
+			$scope.products=[];
+			productsFactory.getProducts(function(data){
+				$scope.products = data
+			})
+			$scope.decrement = function(index){
+				if($scope.products[index].quantity >= 1){
+				$scope.products[index].quantity-=1
+				}else{
+					$scope.products.splice[index, 1]
+				}
+			}
+		}]);		
+</script>
+</head>
+<body>
+	<div ng-controller= "productsController">
+		<form>
+			Product Name: <input type="text" ng-model="newProduct.name">
+			Product Price: <input type="text" ng-model="newProduct.price">
+			<input type="submit" value="Add Product" ng-click = "addProduct()">
+		</form>
+		<input type="text" ng-model="search">
+		<table>
+			<thead>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Actions</th>
+			</thead>
+			<tr ng-repeat= "product in products | filter: search track by $index">
+				<td>{{product.name}}</td>
+				<td>{{product.price}}</td>
+				<td><button ng-click = "removeProduct($index)">Delete product</button></td>
+			</tr>
+		</table>
+	</div>
+	<div ng-controller ="ordersController">
+		<table>
+			<thead>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Actions</th>
+			</thead>
+			<tr ng-repeat= "product in products | filter: search track by $index">
+				<td>{{product.name}}</td>
+				<td>{{product.price}}</td>
+				<td>{{product.quantity}}</td>
+				<td><button ng-click = "decrement($index)">Buy</button></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
