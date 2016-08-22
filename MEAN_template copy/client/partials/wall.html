@@ -1,0 +1,14 @@
+<div class= 'banner'>
+    <div class= "projectname"><h2>Full MEAN Wall</h2></div>
+    <div class = 'welcome'><h3>Welcome {{user.first_name}}</h3></div>
+    <div class= 'logout'><p ng-click="logout()" style="color: lightblue;">Log out</d></div>
+    <hr>
+</div>
+
+<div class= 'post'>
+    <h3>Make a post</h3><br>
+    <form ng-submit="post()">
+        <textarea rows="3" cols="100"></textarea><br>
+        <input type="submit" value="POST!">
+    </form>
+</div>

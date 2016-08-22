@@ -1,0 +1,28 @@
+
+<h2>Friends</h2>
+
+<div class= "allfriends">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Show</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        <tr ng-repeat = "x in friends | orderBy:'last_name' | filter:filter_bd">
+            <td>{{x.first_name}} {{x.last_name}} </td>
+            <td><a href="#/friends/{{x._id}}">Show</a></td>
+            <td><a href="#/friends/edit/{{x._id}}">Update</a></td>
+            <td ng-click="removeFriend(x._id)">Delete</td>
+        </tr>
+    </table>
+</div>
+
+<div class= "filter">
+    <form>
+        <input type="search" ng-model= "filter_bd" placeholder="Filter Birthday!">
+    </form>
+</div>
+<br><br>
+
+<a href="#/friends/new">New Friend</a>

@@ -1,0 +1,17 @@
+{
+  "name": "login_reg",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Karen Chin <c.karen28@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ckaren28/Friends",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
