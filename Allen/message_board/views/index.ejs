@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .container{
+        width: 490px;
+      }
+    </style>
+  </head>
+  <body>
+  <div class="container">
+    <h1>The Dojo Message Board</h1>
+    <hr>
+
+    <form class="post" action="/post_message" method="post">
+      <p>
+        <h3>Name:</h3><input type="text" name="name">
+      </p>
+      <p>
+        <h3>Message:</h3><input type="text" name="message" style="width: 170px;" style="height: 50px;">
+      </p>
+      <button type="submit" name="button">Post Message</button>
+    </form>
+
+    <div class="posted_messages">
+
+      <% for( var x in messages) { %>
+  				<div>
+  					<h3>Name: <%= messages[x].name %></h3>
+  					<h3>Message: <%= messages[x].message %></h3>
+          <p>
+            <% for (var i = 0; i < messages[x]._comments.length; i ++) { %>
+						<h3><%="Name: " + messages[x]._comments[i].name %></h3>
+						<h3><%="Comment: " + messages[x]._comments[i].comment %></h3>
+					<% } %>
+          </p>
+
+          </div>
+
+
+      <form class="post" action="/post_submessage/<%= messages[x]._id %>" method="post">
+        <p>
+          Name: <input type="text" name="name">
+        </p>
+        <p>
+          Comment: <input type="text" name="comment" style="width: 130px;" style="height: 40px;">
+        </p>
+        <button type="submit" name="button">Post Comment</button>
+
+      </form>
+<hr>
+<% } %>
+
+      </div><!-- end of posted messages board -->
+  </div><!-- end of container-->
+
+
+
+
+  </body>
+</html>

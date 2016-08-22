@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+
+  <input type="text" ng-model:"birthday"> <br>
+  <div class="table">
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Show</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat = "friend in friends | filter: birthday">
+          <td>{{friend.first}} {{friend.last}} </td>
+          <td><a href="#/show/{{friend._id}}">show</a> </td>
+          <td><a href="#/edit/{{friend._id}}">edit</a> </td>
+          <td><form ng-submit = "delete(friend._id)"><input type="submit" value="Delete"></form></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <a href="#/new"><button>New Friend</button></a>
+
+  </body>
+</html>

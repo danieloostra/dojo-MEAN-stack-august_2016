@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    .box {
+          width: 390px;
+         }
+    table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+          }
+
+          td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+          }
+
+          tr:nth-child(even) {
+            background-color: #dddddd;
+          }
+    </style>
+  </head>
+  <body>
+    <h3><a href="/">Home</a> </h3>
+<br>
+<div class="box2">
+
+    <table>
+      <tr>
+        <th>
+          Quote
+        </th>
+        <th>
+          Name
+        </th>
+
+      </tr>
+
+    <% for(var i=0; i<info.length; i++) {%>
+      <tr>
+        <td>
+        "  <%= info[i].quote %>"
+        </td>
+
+        <td>
+          - <%= info[i].name %> @ <%= info[i].createdAt %>
+        </td>
+
+      </tr>
+    <% } %>
+
+  </table>
+
+  </div>
+  </body>
+</html>
