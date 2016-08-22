@@ -1,0 +1,26 @@
+<fieldset>
+	<legend>Login</legend>
+	<form ng-submit="login()">
+		Email: <input type="email" ng-model="loginUser.email"><br>
+		Password: <input type="password" ng-model="loginUser.password">
+		<input type="submit" value="Login">
+	</form>
+</fieldset>
+<hr>
+<fieldset>
+	<legend>Register</legend>
+	<form ng-submit="create()">
+		First Name: <input type="text" ng-model="newUser.first_name"><br>
+		Last Name: <input type="text" ng-model="newUser.last_name"><br>
+		Email: <input type="text" ng-model="newUser.email"><br>
+		Password: <input type="password" ng-model="newUser.password"><br>
+		Confirm Password<input type="password" ng-model="newUser.cf_password"><br>
+		Birthday<input type="date" ng-model="newUser.birthdate">
+		<input type="submit" value="Register">
+
+	</form>
+</fieldset>
+<div ng-if="errors">
+	<p ng-repeat="message in messages">{{message}}</p>
+</div>
+

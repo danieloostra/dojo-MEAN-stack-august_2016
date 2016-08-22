@@ -1,0 +1,29 @@
+<div>
+	<h1>Full MEAN Wall</h1>
+	<h2>Welcome {{user.username}}</h2>
+	<button ng-click="logout()">Sign Out</button>
+</div>
+<hr>
+<div>
+	<h2>Post a message</h2>
+	<form ng-submit="postmessage()">
+		<textarea ng-model="newmess.message">	
+		</textarea>
+		<input type="submit" value="Post a message">
+	</form>
+	<div ng-repeat="message in messages | orderBy: 'createdAt':true track by message._id">
+		<h3>{{message.username}} {{message.createdAt | date : "h:mm a MM/dd/yyyy"}}</h3>
+		<p>{{message.message}}</p>
+		<div ng-repeat="comment in message._comments">
+			<h4>{{comment.username}} {{comment.createdAt | date : "h:mm a MM/dd/yyyy"}}</h4>
+			<p>{{comment.comment}}</p>
+		</div>
+		<h2>Post a comment</h2>
+		<form ng-submit="postcomment(message._id)">
+			<textarea ng-model="messages[message._id].comment">	
+			</textarea>
+			<input type="submit" value="Post a comment">
+		</form>
+	</div>
+	
+</div>

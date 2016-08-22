@@ -1,0 +1,9 @@
+<p>Hello!</p>
+<p>Please enter your name to join and share your ideas</p>
+<form ng-submit="login()">
+	<input type="text" ng-model="newUser.username">
+	<input type="submit" name="Enter">
+</form>
+<div ng-if="errors">
+	<p ng-repeat="message in messages">{{message}}</p>
+</div>
