@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="utf-8">
+	<script src=../bower_components/angular/angular.js></script>
+	<script type="text/javascript">
+		var appModule = angular.module('app', []);
+		appModule.controller('userController', function($scope) {
+			$scope.users = [
+			{first_name: 'Test', last_name: 'One', language: 'JavaScript'},
+			{first_name: 'Test', last_name: 'Two', language: 'Python'},
+			{first_name: 'Test', last_name: 'Three', language: 'C'},
+			];
+			$scope.addUser= function() {
+				$scope.users.push($scope.newUser);
+				$scope.newUser = {};
+			}
+			$scope.deleteUser= function() {
+				$scope.users.pop($scope.newUser);
+				$scope.newUser = {};
+			}
+		});
+	</script>
+	<style media="screen">
+		form {
+		display: inline-block;
+		text-align: right;
+		}
+		table {
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		width: 100%;
+		margin-top: 15px;
+		}
+
+		td, th {
+		border: 1px solid #dddddd;
+		text-align: left;
+		padding: 8px;
+		}
+
+		tr:nth-child(even) {
+		background-color: #dddddd;
+		}
+	</style>
+	<title>Controlling Users</title>
+</head>
+<body>
+	<fieldset ng-controller='userController'>
+		<legend>Users Controller</legend>
+		<form>
+			<label>First Name: </label><input type="text" ng-model="newUser.first_name"><br>
+			<label>Last Name: </label><input type="text" ng-model="newUser.last_name"><br>
+			<label>Language: </label><input type="text" ng-model="newUser.language"><br>
+		</form>
+		<button ng-click='addUser()'>Create User</button><br>
+		<table>
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Favorite Language</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat='user in users'>
+					<td>{{user.first_name}}</td>
+					<td>{{user.last_name}}</td>
+					<td>{{user.language}}</td>
+					<td><button ng-click='deleteUser(user)'>Delete User</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+</body>
+</html>

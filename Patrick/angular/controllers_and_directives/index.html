@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="utf-8">
+	<title>Controllers and Directives</title>
+	<script src=../bower_components/angular/angular.js></script>
+	<script type="text/javascript">
+		var appModule = angular.module('app', []);
+		appModule.controller('foodController', function($scope) {
+			$scope.foods = [
+				{name: 'Hamburger'},
+				{name: 'Carrots'},
+				{name: 'Ham'},
+				{name: 'Milk'},
+				{name: 'Eggs'},
+			];
+			$scope.addFood = function() {
+				$scope.foods.push($scope.newFood);
+				$scope.newFood = {};
+			}
+			$scope.printController = function() {
+				console.log($scope);
+			}
+		})
+	</script>
+	<style media="screen">
+		* {
+			vertical-align: top;
+		}
+		#food {
+			border: solid lightgray 1px;
+			width: 129px;
+			height: 250px;
+			display: inline-block;
+		}
+		#left {
+			height:300px;
+		}
+		div {
+			display: inline-block;
+		}
+		li {
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+	<div ng-controller = "foodController">
+		<div id="left">
+			<input type="text" ng-model='newFood.name'>
+			<input type="submit" ng-click="addFood()" value="Add food"><br>
+			<div ng-if = "newFood.name">
+				<p>Currently typing:</p>
+				<p>{{newFood.name}}</p>
+			</div>
+		</div>
+		<div id="right">
+			<input type="text" ng-model="searchFoods" placeholder="filter..."><br>
+			<div id="food">
+				<li ng-repeat='food in foods | filter:searchFoods'>{{food.name}}</li>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
