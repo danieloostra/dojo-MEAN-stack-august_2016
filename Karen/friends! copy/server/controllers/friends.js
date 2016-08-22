@@ -42,7 +42,7 @@ function FriendsController(){
         })
   };
   this.delete = function(req,res){
-      Friends.remove({_id: req.params.id}, function(err){
+      Friends.remove({_id: req.params.id}, function(err){ 
           res.json(err);
       })
   };
