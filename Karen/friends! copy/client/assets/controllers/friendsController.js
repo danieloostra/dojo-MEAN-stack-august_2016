@@ -5,7 +5,7 @@ $scope.friends = []
   WE MIGHT RE USE INDEX A FEW TIMES, SO TO MINIMIZE REPETITION WE SET IT AS A VARIABLE.
 */
 var index = function(){
-                        friendsFactory.index(function(returnedData){
+        friendsFactory.index(function(returnedData){
                           $scope.friends = returnedData;
                           console.log($scope.friends);
                         });
@@ -15,6 +15,7 @@ index();
 $scope.removeFriend = function(id){
     friendsFactory.delete(id, function(data){
         index();
+        $location.url('/friends')
     })
 }
 

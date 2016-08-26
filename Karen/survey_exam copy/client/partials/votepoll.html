@@ -1,0 +1,33 @@
+<div class= 'banner'><a href='#/home'>Go to Polls</a></div>
+<div class= 'vote'>
+    <h2>{{Question}}</h2>
+    <p>Click the VOTE button to choose one</p>
+    <table>
+        <tr>
+            <th>Option</th>
+            <th>Current Count of Votes</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>{{poll.a}}</td>
+            <td>{{poll.voteA}}</td>
+            <td><button ng-click="voteA()">Vote</button></td>
+        </tr>
+        <tr>
+            <td>{{poll.b}}</td>
+            <td ng-model= "voteB">{{poll.voteB}}</td>
+            <td><button ng-click="voteB()">Vote</button></td>
+        </tr>
+        <tr>
+            <td>{{poll.c}}</td>
+            <td ng-model= "voteC">{{poll.voteC}}</td>
+            <td><button ng-click="voteC()">Vote</button></td>
+        </tr>
+        <tr>
+            <td>{{poll.d}}</td>
+            <td ng-model= "voteD">{{poll.voteD}}</td>
+            <td><button ng-click="voteD()">Vote</button></td>
+        </tr>
+
+    </table>
+</div>

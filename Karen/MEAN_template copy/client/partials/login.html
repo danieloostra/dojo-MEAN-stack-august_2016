@@ -1,0 +1,29 @@
+<div class= "registration">
+    <h2>REGISTRATION</h2>
+    <form ng-submit = "register()">
+        <br>{{errors.first_name.message}} <br>
+        First Name: <input type="text" ng-model= "newUser.first_name"><br>
+        <br>{{errors.last_name.message}}<br>
+        Last Name: <input type="text" ng-model= "newUser.last_name"><br>
+        <br>{{errors.email.message}}<br>
+        Email: <input type="email" ng-model= "newUser.email"><br>
+        <br>{{errors.pw.message}}<br>
+        Password: <input type = "password" ng-model="newUser.pw"><br>
+        Confirm Password: <input type="password" ng-model='newUser.confirmpw'><br>
+        <br>{{errors.birthday.message}}<br>
+        Birthday: <input type="date" ng-model= "newUser.birthday"><br><br>
+        <input type="submit" value="Register!"><br>
+    </form>
+</div>
+
+<div class= "login">
+    <h2> LOGIN </h2>
+    <form ng-submit = "login()">
+        <br>{{errors.data}}<br>
+        Email: <input type="email" ng-model= "user.email"><br>
+        <br>{{user.data}}<br>
+        Password: <input type = "password" ng-model="user.pw"><br>
+        <input type="submit" value="Login!"><br>
+    </form>
+
+</div>

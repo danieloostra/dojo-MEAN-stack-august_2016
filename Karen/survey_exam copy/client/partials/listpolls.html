@@ -1,0 +1,27 @@
+<div class= 'banner'>
+    <div class = 'add'><p> <a href="#/add">Create a new Poll</a></p></div>
+    <div class= 'logout'><p ng-click="logout()" style="color: lightblue;">Log out</d></div>
+    <hr>
+</div><br>
+
+<div class= "search">
+    <input type="text" placeholder="Search" ng-model='filter_name'>
+</div><br>
+
+<div class= 'allpolls'>
+    <h3>Current Polls:</h3><br>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Survey Question</th>
+            <th>Date Posted</th>
+            <th>Action</th>
+        </tr>
+        <tr ng-repeat= "x in polls | filter:filter_name">
+            <td>{{x.name}}</td>
+            <td><a href="#/vote/{{x._id}}">{{x.question}}</a></td>
+            <td>{{x.created_at}}</td>
+            <td> <div ng-click="delete(x._id)" style="color: lightblue"> Delete </div></td>
+        </tr>
+    </table>
+</div>
