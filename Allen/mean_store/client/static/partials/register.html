@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app = "app">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="banner">
+
+      <a href='#/dashboard' class = "textbanner">Dashboard</a> | <a href='#/products' class = "textbanner">Products</a> | <a href='#/orders' class = "textbanner">Orders</a> | <a href='#/customers' class = "textbanner">Customers</a>
+
+      </div> <!-- end of banner -->
+      <div class="loginform">
+        <h2>Register</h2>
+        <form ng-submit = "register()">
+          First Name: <br><input type="text" name="name" ng-model = "user.first_name"><br>
+          Last Name: <br><input type="text" name="name" ng-model = "user.last_name"><br>
+          Email: <br><input type="text" name="name" ng-model = "user.email"><br>
+          Password: <br><input type="text" name="name" ng-model = "user.password"><br>
+          Confirm Password: <br><input type="text" name="name" ng-model = "user.confirm_password"><br>
+          <p><button type="submit" name="button"> Register </button></p>
+        </form>
+      </div>
+  </div> <!-- end of container -->
+
+  </body>
+</html>

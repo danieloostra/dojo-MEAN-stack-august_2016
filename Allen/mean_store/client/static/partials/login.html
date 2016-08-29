@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app = "app">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+
+      <div class="banner">
+
+      <a href='#/dashboard' class = "textbanner">Dashboard</a> | <a href='#/products' class = "textbanner">Products</a> | <a href='#/orders' class = "textbanner">Orders</a> | <a href='#/customers' class = "textbanner">Customers</a>
+
+      </div> <!-- end of banner -->
+
+      <div class="login">
+
+        <div class="loginform">
+          <h2>Login</h2>
+
+          <form ng-submit = "login()">
+            Email:<br>
+            <input type="text" name="name" ng-model = "user.email"> <br>
+            Password: <br>
+            <input type="text" name="name" ng-model = "user.password"> <br>
+            <p><button type="submit" name="button"> Login </button></p>
+          </form>
+          <div ng-if = "errors">
+            <p ng-repeat = "message in errormessage">{{message}}</p>
+          </div>
+          <p class="noaccount">If no account:
+          <a href="#/register"> <button> Register </button> </a> </p>
+        </div>
+
+      </div> <!-- end of login -->
+    </div> <!-- end of container -->
+
+  </body>
+</html>
