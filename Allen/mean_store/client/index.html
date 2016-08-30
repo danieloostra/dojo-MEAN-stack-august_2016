@@ -1,0 +1,27 @@
+<html ng-app='app'>
+	<head>
+		<title>Hello Edge Case</title>
+		<link rel='stylesheet' href='static/style.css'>
+		<script  src="angular/angular.js"></script>
+		<script  src="angular-route/angular-route.js"></script>
+		<script  src="angular-messages/angular-messages.js"></script>
+		<script  src="angular-cookies/angular-cookies.js"></script>
+		<script  src="assets/app.js"></script>
+
+		<script  src="assets/factories/customerFactory.js"></script>
+		<script  src="assets/factories/orderFactory.js"></script>
+		<script  src="assets/factories/productFactory.js"></script>
+
+		<script  src="assets/controllers/userController.js"></script>
+		<script  src="assets/controllers/customersController.js"></script>
+		<script  src="assets/controllers/productsController.js"></script>
+		<script  src="assets/controllers/ordersController.js"></script>
+		<script  src="assets/controllers/dashboardController.js"></script>
+	</head>
+	<body>
+		<div id='container'>
+			<!-- <a href='#/dashboard'>Dashboard</a> | <a href='#/products'>Products</a> | <a href='#/orders'>Orders</a> | <a href='#/customers'>Customers</a> -->
+			<div ng-view = ""></div>
+		</div>
+	</body>
+</html>
