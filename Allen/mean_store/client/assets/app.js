@@ -13,11 +13,11 @@ app.config(function($routeProvider){
       })
 	 		.when('/dashboard', {
 	 			templateUrl: './../static/partials/dashboard.html',
-	 			controller: "dashboardsController"
+	 			controller: "dashboardController"
 	 		})
       .when('/customers',{
           templateUrl: './../static/partials/customers.html',
-          controller: "customersController"
+          controller: "customerController"
       })
       .when('/orders',{
           templateUrl: './../static/partials/orders.html',
@@ -25,7 +25,8 @@ app.config(function($routeProvider){
       })
       .when('/products',{
           templateUrl: './../static/partials/products.html',
-          controller: "productsController"
+          controller: "userController"
+          // controller: "productsController"
       })
       .when('/logout',{
           templateUrl: '../static/partials/login.html',

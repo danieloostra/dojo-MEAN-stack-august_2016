@@ -14,13 +14,20 @@
       <div class="loginform">
         <h2>Register</h2>
         <form ng-submit = "register()">
-          First Name: <br><input type="text" name="name" ng-model = "user.first_name"><br>
-          Last Name: <br><input type="text" name="name" ng-model = "user.last_name"><br>
-          Email: <br><input type="text" name="name" ng-model = "user.email"><br>
-          Password: <br><input type="text" name="name" ng-model = "user.password"><br>
-          Confirm Password: <br><input type="text" name="name" ng-model = "user.confirm_password"><br>
+          First Name: <br><input type="text" name="name" ng-model = "newuser.first_name"><br>
+          Last Name: <br><input type="text" name="name" ng-model = "newuser.last_name"><br>
+          Email: <br><input type="text" name="name" ng-model = "newuser.email"><br>
+          Password: <br><input type="text" name="name" ng-model = "newuser.password"><br>
+          Confirm Password: <br><input type="text" name="name" ng-model = "newuser.confirm_password"><br>
           <p><button type="submit" name="button"> Register </button></p>
         </form>
+        <div ng-repeat = "error in errormessage">
+          <div >
+            {{error}}
+          </div>
+        </div>
+        <p class="noaccount">Already have an account:
+        <a href="#/"> <button> Login </button> </a> </p>
       </div>
   </div> <!-- end of container -->
 

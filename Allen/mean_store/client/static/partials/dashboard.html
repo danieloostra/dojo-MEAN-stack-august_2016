@@ -8,10 +8,50 @@
     <div class="container">
     <div class="banner">
 
-    <a href='#/dashboard' class = "textbanner">Dashboard</a> | <a href='#/products' class = "textbanner">Products</a> | <a href='#/orders' class = "textbanner">Orders</a> | <a href='#/customers' class = "textbanner">Customers</a>  |  <a href='#/logout' class = "textbanner">Logout</a>
+    <a href='#/dashboard' class = "textbanner" id="dashboard" >Dashboard</a> | <a href='#/products' class = "textbanner">Products</a> | <a href='#/orders' class = "textbanner">Orders</a> | <a href='#/customers' class = "textbanner">Customers</a>  |  <a href='#/logout' ng-click = "logout()" class = "textbanner">Logout</a>
 
   </div> <!-- end of banner -->
-    <h1>dashboard page</h1>
+<h2> {{user.first_name}}'s Dashboard</h2>
+
+    <div class="search">
+      <p><input type="text"></p>
+      <button type="submit" name="button">Filter</button>
+    </div>
+    <div class="information">
+      <div class="images">
+        <p><img src="../images/placeholder.png" /><br> Nike shoes <br>{counter}</p>
+        <p><img src="../images/placeholder.png"  /><br> Shirt <br>{counter}</p>
+        <p><img src="../images/placeholder.png"  /><br> Pants <br>{counter}</p>
+        <p><img src="../images/placeholder.png"  /><br> Computer <br> {counter}</p>
+        <p><img src="../images/placeholder.png"  /><br> House <br> {counter}</p>
+        <p><img src="../images/placeholder.png"  /><br> iPhone <br> {counter}</p>
+        <br><br>
+        <p> <a href="#">show more....</a></p>
+      </div> <!-- end of images -->
+      <div class="recent_orders">
+        <p>Recent Orders</p>
+        <ul>
+          <li>Michael Purchased</li>
+          <li>Michael Purchased</li>
+          <li>Michael Purchased</li>
+          <li>Michael Purchased</li>
+        </ul>
+        <a href="#">show more recent orders....</a>
+
+      </div> <!-- end of recent_orders -->
+      <div class="new_customers">
+        <p>New Customers</p>
+        <ul>
+          <li>Michael just joined</li>
+          <li>Bully just joined</li>
+          <li>Brook just joined</li>
+          <li>Joe just joined</li>
+        </ul>
+          <a href="#">show more recent orders....</a>
+
+      </div> <!-- end of recent_orders -->
+
+    </div> <!-- end of information -->
 
   </div> <!-- end of container -->
 
