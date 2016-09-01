@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app = 'app'>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      h1 {
+        display: inline-block;
+        margin-left: 20px;
+      }
+      h3 {
+        display: inline-block;
+        margin-left: 35%;
+        text-align: justify;
+      }
+      #signout{
+        margin-left: 9px;
+      }
+      .messagebox {
+        margin-left: 15px;
+      }
+      input {
+        height:70px;
+        width: 359px;
+      }
+      #message_button{
+        margin-left: 260px;
+      }
+      .displaymessage{
+        margin-left: 10px;
+      }
+      .response{
+        margin-left: 30px;
+      }
+      .comment{
+        margin-left: 20px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h1>Full MEAN Wall</h1>
+    <h3>Welcome {{username.username}}!</h3>
+    <button id= "signout"type="submit" ng-click ='signout()'>Sign Out</button>
+    <hr>
+
+      <form class = 'messagebox' ng-submit = "message()">
+        Post a message:<br>
+        <input type = 'text' ng-model ="newmessage.message"> <br>
+
+        <button id="message_button" type="submit">Post a message</button>
+      </form>
+
+    <hr>
+    <div class="displaymessage">
+
+      <div ng-repeat = "message in allmessages">
+
+        {{message.username}} {{message.createdAt}} <br>
+        {{message.message}}
+
+
+          <div class = "comment" ng-repeat = "comment in message._comment">
+            {{comment.username}} {{comment.createdAt}} <br>
+            {{comment.comment}}
+          </div>
+
+
+        <form class="response" ng-submit = "usercomment(message._id)">
+
+          Post a comment:<br> <input type = 'text' ng-model = "newcomment.comment"> <br>
+
+          <button id="message_button" type="submit">Post a comment</button>
+
+        </form>
+
+      </div>
+        <p>{-----response to those messages goes in here}</p>
+
+    </div>
+
+
+  </body>
+</html>
